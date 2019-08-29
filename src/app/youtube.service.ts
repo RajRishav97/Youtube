@@ -12,8 +12,10 @@ export class YoutubeService {
   private _url: string ="http://localhost:3100/items";
   constructor(private http:HttpClient) { }
 
-  getYoutube(): Observable<[IYoutube]>{
-    return this.http.get<[IYoutube]>(this._url);
+  getYoutube(): Observable<any>{
+    return this.http.get<any>(this._url);
   }
+
+  
 
 }

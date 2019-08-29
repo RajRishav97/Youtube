@@ -27,4 +27,4 @@ import { PlaylistComponent, SafePipe } from './playlist/playlist.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);

@@ -1,7 +1,5 @@
 <p>playlist works!</p>
 <h2>Video List<h2>
 <ul *ngFor="let videolist of videolists">
-    <li>{{videolist.snippet.title}}<iframe type="text/html" width="320" height="180"
-        [src]="url+videolist.snippet.resourceId.videoId | safe"
-        frameborder="0"></iframe></li>
+    <li (click)="onSelect(videolist.snippet.resourceId.videoId)" [routerLink]="['/video-list',videolist.snippet.resourceId.videoId ]"routerLinkActive="active">{{videolist.snippet.title}}</li>
 </ul>

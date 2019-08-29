@@ -1,6 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router, ParamMap} from '@angular/router';
 
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer} from '@angular/platform-browser';
+import { switchMap } from 'rxjs/operators';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+} 
+
 @Component({
   selector: 'app-youtube-player',
   templateUrl: 'youtube-player.component.html',
@@ -8,28 +20,25 @@ import {ActivatedRoute,Router, ParamMap} from '@angular/router';
 })
 export class YoutubePlayerComponent implements OnInit {
 
+  url = "https://www.youtube.com/embed/";
+
   constructor(private route:ActivatedRoute,private router:Router) { }
 
-  player: YT.Player;
-  private id: string = '0eWrpsCLMJQ';
-  public video_id;
+  
+  public video_id="0eWrpsCLMJQ";
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap)=>{
-      let id=parseInt(params.get('videoId'));
+    this.route.paramMap.subscribe((params:ParamMap)=>{
+      console.log(params);
+      let id=params.get('id');
+      if(id !== null){
+      console.log(id);
       this.video_id=id;
+      }
     });
   }
 
   
-
-  savePlayer(player) {
-    this.player = player;
-    console.log('player instance', player);
-  }
-  onStateChange(event) {
-    console.log('player state', event.data);
-  }
 
   /*public departmentID;
 

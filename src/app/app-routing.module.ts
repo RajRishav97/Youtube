@@ -5,9 +5,9 @@ import { YoutubePlayerComponent } from './youtube-player/youtube-player.componen
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'/video-list',pathMatch:'full'},
+  //{path:'',redirectTo:'/video-list',pathMatch:'full'},
   {path: 'video-list', component:PlaylistComponent },
-  {path: 'video', component:YoutubePlayerComponent},
+  {path: 'video-list/:id', component:YoutubePlayerComponent},
   //{path: "**", component:PageNotFoundComponent}
 ];
 
@@ -16,3 +16,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+export const routingComponents = [PlaylistComponent,YoutubePlayerComponent];

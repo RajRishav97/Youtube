@@ -3,6 +3,7 @@ import { YoutubeService } from '../youtube.service';
 import {ActivatedRoute,Router, ParamMap} from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
+import { IYoutube } from '../youtube';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -20,32 +21,34 @@ export class PlaylistComponent implements OnInit {
 
   url = "https://www.youtube.com/embed/";
 
-  public videolists: any [];
+  public videolists:any[];
   public errorMsg;
   public selectedID;
-
-  player: YT.Player;
-  private id: string = '0eWrpsCLMJQ';
-  public video_id;
 
   constructor(private _youtubeService:YoutubeService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this._youtubeService.getYoutube()
         .subscribe((data)=>{console.log(data);this.videolists=data;});
+
+    console.log(this.videolists,"papau");
     
     this.route.paramMap.subscribe((params: ParamMap)=>{
-      let id=parseInt(params.get('videoId'));
+      let id=params.get('id');
       this.selectedID=id;
-    });
+     });
+     
   }
 
-  savePlayer(player) {
-    this.player = player;
-    console.log('player instance', player);
+  
+  onSelect(id){
+    this.router.navigate(["/video-list",id]);//Normal Routing Navigation
+    //console.log(videolist);
+    //this.router.navigate([videolist.snippet.resourceId.videoId],{relativeTo:this.route})//Relative Navigation
   }
-  onStateChange(event) {
-    console.log('player state', event.data);
-  }
+
+  // isSelected(videolist){
+  //   return videolist.snippet.resourceId.videoId === this.selectedID;
+  // }
   
 }

@@ -1,2 +1,17 @@
-<app-youtube-player></app-youtube-player>
-<app-playlist></app-playlist>
+<router-outlet></router-outlet>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html" ><img src="assets/logo.png" width="160px" height="50px" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+                <input #search_input  type="text">
+                <button (click)="doSearch(search_input.value)">Search</button>
+            
+        <a class="ml-auto" routerLink="/video-list" routerLinkActive="active">Go to video List</a>
+          
+        </div>
+      </nav>

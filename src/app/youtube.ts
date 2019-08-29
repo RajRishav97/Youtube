@@ -1,3 +1,14 @@
+export interface PageInfo {
+    totalResults: number;
+    resultsPerPage: number;
+}
+
+export interface Id {
+    kind: string;
+    videoId: string;
+    playlistId: string;
+}
+
 export interface Default {
     url: string;
     width: number;
@@ -16,29 +27,10 @@ export interface High {
     height: number;
 }
 
-export interface Standard {
-    url: string;
-    width: number;
-    height: number;
-}
-
-export interface Maxres {
-    url: string;
-    width: number;
-    height: number;
-}
-
 export interface Thumbnails {
     default: Default;
     medium: Medium;
     high: High;
-    standard: Standard;
-    maxres: Maxres;
-}
-
-export interface ResourceId {
-    kind: string;
-    videoId: string;
 }
 
 export interface Snippet {
@@ -48,14 +40,21 @@ export interface Snippet {
     description: string;
     thumbnails: Thumbnails;
     channelTitle: string;
-    playlistId: string;
-    position: number;
-    resourceId: ResourceId;
+    liveBroadcastContent: string;
+}
+
+export interface Item {
+    kind: string;
+    etag: string;
+    id: Id;
+    snippet: Snippet;
 }
 
 export interface IYoutube {
     kind: string;
     etag: string;
-    id: string;
-    snippet: Snippet;
+    nextPageToken: string;
+    regionCode: string;
+    pageInfo: PageInfo;
+    items: Item[];
 }

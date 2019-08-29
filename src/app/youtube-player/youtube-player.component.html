@@ -1,5 +1,4 @@
-<youtube-player
-  [videoId]="id"
-  (ready)="savePlayer($event)"
-  (change)="onStateChange($event)">
-</youtube-player>
+<div class="col-md-8"></div>
+<iframe type="text/html" width="640" height="360"
+[src]="url+video_id | safe"
+frameborder="0"></iframe>
