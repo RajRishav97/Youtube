@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ActivatedRoute,Router, ParamMap} from '@angular/router';
 @Component({
   selector: 'app-youtube-player',
-  template: `
-  <youtube-player
-  [videoId]="id"
-  (ready)="savePlayer($event)"
-  (change)="onStateChange($event)">
-  </youtube-player>
-  `,
+  templateUrl: 'youtube-player.component.html',
   styles: []
 })
 export class YoutubePlayerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap)=>{
+      let id=parseInt(params.get('id'));
+      this.videoID=id;
+    });
   }
 
   player: YT.Player;
-  private id: string = 'qDuKsiwS5xw';
+  public videoID;
 
   savePlayer(player) {
     this.player = player;
@@ -28,5 +26,45 @@ export class YoutubePlayerComponent implements OnInit {
   onStateChange(event) {
     console.log('player state', event.data);
   }
+
+  /*public departmentID;
+
+  constructor(private route:ActivatedRoute,private router:Router) { }
+
+  ngOnInit() {
+    //let id=parseInt(this.route.snapshot.paramMap.get('id'));
+    //this.departmentID=id;
+
+    this.route.paramMap.subscribe((params: ParamMap)=>{
+      let id=parseInt(params.get('id'));
+      this.departmentID=id;
+    });
+  }
+
+  MovePrivious(){
+    let previousID=this.departmentID-1;
+    //this.router.navigate(['/departments',previousID]);//Routing navigation
+    this.router.navigate(['../',previousID],{relativeTo:this.route});
+  }
+
+  MoveNext(){
+    let nextID=this.departmentID+1;
+    //this.router.navigate(['/departments',nextID]);//Routing navigation
+    this.router.navigate(['../',nextID],{relativeTo:this.route});
+  }
+
+  gotoDepartments(){
+    let selectID=this.departmentID?this.departmentID:null;
+    //this.router.navigate(['/departments',{id:selectID,test:'testValue'}]);//Routing Navigation
+    this.router.navigate(['../',{id:selectID}],{relativeTo:this.route});//Relative Navigation
+  }
+
+  showOverview(){
+    this.router.navigate(['overview'],{relativeTo:this.route});
+  }
+
+  showContact(){
+    this.router.navigate(['contact'],{relativeTo:this.route});
+  }*/
 
 }

@@ -6,18 +6,23 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { YoutubePlayerComponent } from './youtube-player/youtube-player.component';
+import { HttpClientModule } from '@angular/common/http';
+import { YoutubeService } from './youtube.service';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    YoutubePlayerComponent
+    YoutubePlayerComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxYoutubePlayerModule
+    NgxYoutubePlayerModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [YoutubeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
