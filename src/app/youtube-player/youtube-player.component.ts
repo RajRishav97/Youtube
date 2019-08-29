@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router, ParamMap} from '@angular/router';
+
 @Component({
   selector: 'app-youtube-player',
   templateUrl: 'youtube-player.component.html',
@@ -9,15 +10,18 @@ export class YoutubePlayerComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,private router:Router) { }
 
+  player: YT.Player;
+  private id: string = '0eWrpsCLMJQ';
+  public video_id;
+
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap)=>{
-      let id=parseInt(params.get('id'));
-      this.videoID=id;
+      let id=parseInt(params.get('videoId'));
+      this.video_id=id;
     });
   }
 
-  player: YT.Player;
-  public videoID;
+  
 
   savePlayer(player) {
     this.player = player;
