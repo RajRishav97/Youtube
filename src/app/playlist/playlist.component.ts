@@ -21,7 +21,7 @@ export class PlaylistComponent implements OnInit {
 
   url = "https://www.youtube.com/embed/";
 
-  public videolists:any[];
+  public videolists=[];
   public errorMsg;
   public selectedID;
 
@@ -29,9 +29,9 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit() {
     this._youtubeService.getYoutube()
-        .subscribe((data)=>{console.log(data);this.videolists=data;});
+        .subscribe((data)=>{console.log(data.items);this.videolists=(data.items)});
 
-    console.log(this.videolists,"papau");
+    console.log(this.videolists);
     
     this.route.paramMap.subscribe((params: ParamMap)=>{
       let id=params.get('id');

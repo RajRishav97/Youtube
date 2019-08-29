@@ -1,5 +1,5 @@
 <p>playlist works!</p>
 <h2>Video List<h2>
 <ul *ngFor="let videolist of videolists">
-    <li (click)="onSelect(videolist.snippet.resourceId.videoId)" [routerLink]="['/video-list',videolist.snippet.resourceId.videoId ]"routerLinkActive="active">{{videolist.snippet.title}}</li>
+    <li (click)="onSelect(videolist.id.videoId)" [routerLink]="['/video-list',videolist.id.videoId ]"routerLinkActive="active">{{videolist.snippet.title}}</li>
 </ul>

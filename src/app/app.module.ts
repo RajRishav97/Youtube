@@ -9,13 +9,15 @@ import { YoutubePlayerComponent } from './youtube-player/youtube-player.componen
 import { HttpClientModule } from '@angular/common/http';
 import { YoutubeService } from './youtube.service';
 import { PlaylistComponent, SafePipe } from './playlist/playlist.component';
+import { StartPageComponent } from './start-page/start-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     YoutubePlayerComponent,
     PlaylistComponent,
-    SafePipe
+    SafePipe,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,
