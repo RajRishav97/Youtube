@@ -5,8 +5,6 @@ export interface PageInfo {
 
 export interface Id {
     kind: string;
-    videoId: string;
-    playlistId: string;
 }
 
 export interface Default {
@@ -57,4 +55,8 @@ export interface IYoutube {
     regionCode: string;
     pageInfo: PageInfo;
     items: Item[];
+}
+export interface data {
+    id: number;
+    name: string;
 }

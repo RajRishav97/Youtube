@@ -1,15 +1,99 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html" ><img src="assets/logo.png" width="160px" height="50px" alt="Logo"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-            <input #search_input  type="text">
-            <button (click)="doSearch(search_input.value)" routerLink="/video-list" routerLinkActive="active">Search</button>
-        
-    <a class="ml-auto" routerLink="/video-list" routerLinkActive="active">Go to My video List</a>
-        
+
+  <nav class="navbar navbar-expand-lg navbar-danger bg-danger" style="width:100%;position:fixed;z-index: 9999;">
+        <a class="navbar-brand fa fa-play" href="#" style="color: wheat">YOUTUBE</a>
+                     <input #search_input class="form-control mr-sm-2" type="search" placeholder="Search your video here..." aria-label="Search">
+                        <button (click)="doSearch(search_input.value)" routerLink="/video-list" routerLinkActive="active" style="background: wheat;margin-right: 5px;" class="btn my-2 my-sm-0 fa fa-search" type="submit">Search</button>
+                        <button  (click)="doSearch(search_input.value)" routerLink="/profile" routerLinkActive="active" style="background: wheat" class="btn my-2 my-sm-0 fa fa-user" type="submit">User</button>
+      </nav>
+
+
+
+
+
+
+
+
+<div style="padding: 50px;"></div>
+
+<h2>Entertainment</h2>
+<div class="row ">
+    <div class="col-sm-12">
+        <div class="card-deck">
+            <div class="card" *ngFor="let video of Entertainment | slice:0:5">
+
+                    <div class="card-block">
+                        <img [routerLink]="['/video-list',video.id.videoId ]"routerLinkActive="active" src="{{video.snippet.thumbnails.medium.url}}" alt="thumbnails">
+                    </div>
+                    <div class="card-block wrapper">
+                        <h5>{{video.snippet.title}}</h5>
+                    </div>
+            </div>
+            <button (click)="goToEntertainment()" routerLink="/video-list" routerLinkActive="active">More..</button>
+        </div> 
     </div>
-</nav>
+</div>
+
+<div class="space"></div>
+
+<h2>News</h2>
+<div class="row ">
+    <div class="col-sm-12">
+        <div class="card-deck">
+            <div class="card" *ngFor="let video of News | slice:0:5">
+
+                    <div class="card-block">
+                        <img [routerLink]="['/video-list',video.id.videoId ]"routerLinkActive="active" src="{{video.snippet.thumbnails.medium.url}}" alt="thumbnails">
+                    </div>
+                    <div class="card-block wrapper">
+                        <h5>{{video.snippet.title}}</h5>
+                    </div>
+            </div>
+            <button (click)="goToNews()" routerLink="/video-list" routerLinkActive="active">More..</button>
+        </div> 
+    </div>
+</div>
+
+<div class="space"></div>
+
+<h2>Music</h2>
+<div class="row ">
+    <div class="col-sm-12">
+        <div class="card-deck">
+            <div class="card" *ngFor="let video of Music | slice:0:5">
+
+                    <div class="card-block">
+                        <img [routerLink]="['/video-list',video.id.videoId ]"routerLinkActive="active" src="{{video.snippet.thumbnails.medium.url}}" alt="thumbnails">
+                    </div>
+                    <div class="card-block wrapper">
+                        <h5>{{video.snippet.title}}</h5>
+                    </div>
+            </div>
+            <button (click)="goToMusic()" routerLink="/video-list" routerLinkActive="active">More..</button>
+        </div> 
+    </div>
+</div>
+
+<div class="space"></div>
+
+<h2>Sports</h2>
+<div class="row ">
+    <div class="col-sm-12">
+        <div class="card-deck">
+            <div class="card" *ngFor="let video of Sports | slice:0:5">
+
+                    <div class="card-block">
+                        <img [routerLink]="['/video-list',video.id.videoId ]"routerLinkActive="active" src="{{video.snippet.thumbnails.medium.url}}" alt="thumbnails">
+                    </div>
+                    <div class="card-block wrapper">
+                        <h5>{{video.snippet.title}}</h5>
+                    </div>
+            </div>
+            <button (click)="goToSports()" routerLink="/video-list" routerLinkActive="active">More..</button>
+        </div> 
+    </div>
+</div>
+
+<div class="space"></div>
+
+

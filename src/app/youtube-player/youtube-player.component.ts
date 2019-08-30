@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router, ParamMap} from '@angular/router';
+import { YoutubeService } from '../youtube.service';
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
@@ -22,10 +23,12 @@ export class YoutubePlayerComponent implements OnInit {
 
   url = "https://www.youtube.com/embed/";
 
-  constructor(private route:ActivatedRoute,private router:Router) { }
+  constructor(private _youtubeService:YoutubeService,private route:ActivatedRoute,private router:Router) { }
 
   
   public video_id="0eWrpsCLMJQ";
+  public videolists=[];
+  public Comments=[];
 
   ngOnInit() {
     this.route.paramMap.subscribe((params:ParamMap)=>{
@@ -38,7 +41,14 @@ export class YoutubePlayerComponent implements OnInit {
     });
   }
 
-  
+  doComment(value){
+    this.Comments.push(value);
+    console.log(this.Comments);
+  }
+  doSearch(value){
+    this._youtubeService.searchYoutube(value)
+        .subscribe((data)=>{console.log(data.items);this.videolists=data.items;});
+  }
 
   /*public departmentID;
 
@@ -79,5 +89,6 @@ export class YoutubePlayerComponent implements OnInit {
   showContact(){
     this.router.navigate(['contact'],{relativeTo:this.route});
   }*/
+
 
 }

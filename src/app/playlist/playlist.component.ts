@@ -24,7 +24,10 @@ export class PlaylistComponent implements OnInit {
   public videolists=[];
   public errorMsg;
   public selectedID;
-
+  public favouriteData={
+    "lists":[]
+  };
+  public fs;
   constructor(private _youtubeService:YoutubeService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
@@ -46,7 +49,22 @@ export class PlaylistComponent implements OnInit {
     //console.log(videolist);
     //this.router.navigate([videolist.snippet.resourceId.videoId],{relativeTo:this.route})//Relative Navigation
   }
-
+  addToFavourite(value){
+    console.log(value,"from playlist");
+    this._youtubeService.addToFavourites(value.snippet).subscribe();
+  }
+  doSearch(value){
+    this._youtubeService.searchYoutube(value)
+        .subscribe((data)=>{console.log(data.items);this.videolists=data.items;});
+  }
+/*
+addHero (hero: Hero): Observable<Hero> {
+  return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
+    .pipe(
+      catchError(this.handleError('addHero', hero))
+    );
+}
+*/
   // isSelected(videolist){
   //   return videolist.snippet.resourceId.videoId === this.selectedID;
   // }

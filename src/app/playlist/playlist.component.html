@@ -1,5 +1,15 @@
-<p>playlist works!</p>
-<h2>Video List<h2>
-<ul *ngFor="let videolist of videolists">
-    <li (click)="onSelect(videolist.id.videoId)" [routerLink]="['/video-list',videolist.id.videoId ]"routerLinkActive="active">{{videolist.snippet.title}}</li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-danger bg-danger" style="width:100%;position:fixed;z-index: 9999;">
+        <a class="navbar-brand fa fa-play" href="#" style="color: wheat">YOUTUBE</a>
+                     <input #search_input class="form-control mr-sm-2" type="search" placeholder="Search your video here..." aria-label="Search">
+                        <button (click)="doSearch(search_input.value)" routerLink="/video-list" routerLinkActive="active" style="background: wheat;margin-right: 5px;" class="btn my-2 my-sm-0 fa fa-search" type="submit">Search</button>
+                        <button  (click)="doSearch(search_input.value)" routerLink="/profile" routerLinkActive="active" style="background: wheat" class="btn my-2 my-sm-0 fa fa-user" type="submit">User</button>
+      </nav>
+<div style="padding: 50px;"></div>
+
+<h2 >Video List<h2>
+<div *ngFor="let videolist of videolists">
+    <img src="{{videolist.snippet.thumbnails.default.url}}" alt="thumbnails">
+    <h5 (click)="onSelect(videolist.id.videoId)" [routerLink]="['/video-list',videolist.id.videoId ]"routerLinkActive="active">{{videolist.snippet.title}}</h5>
+    <h5 (click)="addToFavourite(videolist)">AddToFavourite</h5>
+</div>
+

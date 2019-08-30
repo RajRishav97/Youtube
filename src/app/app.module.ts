@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { YoutubeService } from './youtube.service';
 import { PlaylistComponent, SafePipe } from './playlist/playlist.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StartPageComponent } from './start-page/start-page.component';
     YoutubePlayerComponent,
     PlaylistComponent,
     SafePipe,
-    StartPageComponent
+    StartPageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -5,15 +5,16 @@ h1 {
     font-size: 250%;
   }
   h2, h3 { 
-    color: #444;
+    color:black;
     font-family: Arial, Helvetica, sans-serif;   
     font-weight: lighter;
   }
   body { 
-    margin: 2em; 
+    
+    background-color:whitesmoke;
   }
   body, input[text], button { 
-    color: #888; 
+    color:white; 
     font-family: Cambria, Georgia; 
   }
   a {
@@ -37,26 +38,39 @@ h1 {
     color: #aaa; 
     cursor: auto;
   }
-  
-  /* Navigation link styles */
-  nav a {
-    padding: 0;
-    text-decoration: none;
-    margin-top: 0;
-    display: inline-block;
-    background-color: #eee;
-    border-radius: 4px;
+nav{
+  background:
+}
+  .horizontal-scroll-wrapper {
+    width: 100px;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: rotate(-90deg);
+    transform-origin: right top;
+    transform:rotate(-90deg) translateY(-100px);
   }
-  nav a:visited, a:link {
-    color: #607D8B;
+  .center{
+    text-align: center;
   }
-  nav a:hover {
-    color: #039be5;
-    background-color: #CFD8DC;
+
+  img{
+    border-style: solid;
+    border-width: 1px;
+    max-width: 100%;
   }
-  nav a.active {
-    color: #039be5;
+
+  .space{
+    padding-top:6rem; 
   }
+  .horizontal-scroll-wrapper > div {
+    max-width: 100%;
+    max-height: 100%;
+    transform: rotate(90deg);
+    transform-origin: right top;
+  }
+
+
   
   /* items class */
   .items {
@@ -65,15 +79,21 @@ h1 {
     padding-left: 0;
     width: 10em;
   }
-  .items li {
+  h5 {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
+    color:black;
     margin: .5em;
     padding: .3em;
     height: 1.6em;
     border-radius: 4px;
+  }
+  #favList{
+    border: 2px solid black;
+    max-width: 100%;
+    border-radius: 10px;
+    padding-top: 1rem;
   }
   ul{
     list-style-type: none;
@@ -93,11 +113,11 @@ h1 {
     top: -3px;
   }
   
-  li {
+  .items li {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
+    background-color:black;
     margin: .5em;
     padding: .3em;
     height: 1.6em;
