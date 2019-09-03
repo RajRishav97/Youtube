@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import {ActivatedRoute,Router, ParamMap} from '@angular/router';
 import { YoutubeService } from '../youtube.service';
+import { Inject }  from '@angular/core';
+import { DOCUMENT } from '@angular/common'; 
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import { switchMap } from 'rxjs/operators';
+import { rendererTypeName } from '@angular/compiler';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -23,12 +26,15 @@ export class YoutubePlayerComponent implements OnInit {
 
   url = "https://www.youtube.com/embed/";
 
-  constructor(private _youtubeService:YoutubeService,private route:ActivatedRoute,private router:Router) { }
+  @ViewChild('myDiv',{ static: false }) myDiv: ElementRef;
+
+  constructor(private _youtubeService:YoutubeService,private route:ActivatedRoute,private router:Router,private renderer:Renderer2) { }
 
   
   public video_id="0eWrpsCLMJQ";
   public videolists=[];
   public Comments=[];
+  public li=this.renderer.createComment('h5');
 
   ngOnInit() {
     this.route.paramMap.subscribe((params:ParamMap)=>{
@@ -39,56 +45,22 @@ export class YoutubePlayerComponent implements OnInit {
       this.video_id=id;
       }
     });
+    this._youtubeService.getYoutube()
+        .subscribe((data)=>{console.log(data.items);this.videolists=(data.items)});
   }
 
   doComment(value){
     this.Comments.push(value);
     console.log(this.Comments);
+    this.li.innerHTML="Commented";
+    this.renderer.appendChild(this.myDiv.nativeElement,this.li);
+
   }
   doSearch(value){
     this._youtubeService.searchYoutube(value)
         .subscribe((data)=>{console.log(data.items);this.videolists=data.items;});
   }
 
-  /*public departmentID;
-
-  constructor(private route:ActivatedRoute,private router:Router) { }
-
-  ngOnInit() {
-    //let id=parseInt(this.route.snapshot.paramMap.get('id'));
-    //this.departmentID=id;
-
-    this.route.paramMap.subscribe((params: ParamMap)=>{
-      let id=parseInt(params.get('id'));
-      this.departmentID=id;
-    });
-  }
-
-  MovePrivious(){
-    let previousID=this.departmentID-1;
-    //this.router.navigate(['/departments',previousID]);//Routing navigation
-    this.router.navigate(['../',previousID],{relativeTo:this.route});
-  }
-
-  MoveNext(){
-    let nextID=this.departmentID+1;
-    //this.router.navigate(['/departments',nextID]);//Routing navigation
-    this.router.navigate(['../',nextID],{relativeTo:this.route});
-  }
-
-  gotoDepartments(){
-    let selectID=this.departmentID?this.departmentID:null;
-    //this.router.navigate(['/departments',{id:selectID,test:'testValue'}]);//Routing Navigation
-    this.router.navigate(['../',{id:selectID}],{relativeTo:this.route});//Relative Navigation
-  }
-
-  showOverview(){
-    this.router.navigate(['overview'],{relativeTo:this.route});
-  }
-
-  showContact(){
-    this.router.navigate(['contact'],{relativeTo:this.route});
-  }*/
-
+  
 
 }

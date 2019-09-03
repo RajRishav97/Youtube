@@ -10,7 +10,29 @@
         <div id="favList"  *ngFor="let list of favourite">
             <img src="{{list.thumbnails.default.url}}" alt="favourite Video">
             <h4 style="color: gray">{{list.title}}</h4>
-            <li style="color: gray">{{list.description}}</li>
+            <li style="color: gray">{{list.Comment}}</li>
+            <p><button (click)="goRemove(list.id)" class="bg-primary">RemoveThis</button>
+            <button (click)="setId(list.id)" class="bg-primary" data-toggle="modal" data-target="#myModal">Comment</button></p>
+            <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+            <textarea #comment rows="4" cols="50" class="mr-sm-2" placeholder="Enter text here..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button (click)="doComment(comment.value)" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
         </div>
 
     </div>

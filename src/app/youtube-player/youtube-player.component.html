@@ -6,21 +6,30 @@
                         <button  (click)="doSearch(search_input.value)" routerLink="/profile" routerLinkActive="active" style="background: wheat" class="btn my-2 my-sm-0 fa fa-user" type="submit">User</button>
       </nav>
 <div style="padding: 50px;"></div>
-<div class="row">
-        <div class="col-md-6">
-                <iframe type="text/html" width="640" height="360"
-                [src]="url+video_id | safe"
-                frameborder="0"></iframe>
-                <div class="row" style="padding: 2rem;">
-                    <textarea #comment rows="4" cols="50" class="mr-sm-2" placeholder="Enter text here..."></textarea>
-                    <button class="bg-dark mr-auto" (click)="doComment(comment.value)">Comment</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h2>Comments Lists:</h2>
 
-                <ul *ngFor="let comment of Comments">{{comment}}</ul>
-            </div>
-                
-</div>
+
+
+  <div class="row">
+                <div class="col-md-6">
+                        <iframe type="text/html" width="640" height="480"
+                        [src]="url+video_id | safe"
+                        frameborder="0"></iframe>
+                        <div class="row" style="padding: 2rem;">
+                            <textarea #comment rows="4" cols="50" class="mr-sm-2" placeholder="Enter text here..."></textarea>
+                            <button class="bg-dark mr-auto" (click)="doComment(comment.value)">Comment</button>
+                        </div>
+                        <h2 style="color: black">Comments:</h2>
+                        <div #myDiv>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div *ngFor="let videolist of videolists|slice:0:10">
+                            <img src="{{videolist.snippet.thumbnails.default.url}}" alt="thumbnails">
+                            <h5 (click)="onSelect(videolist.id.videoId)" [routerLink]="['/video-list',videolist.id.videoId ]"routerLinkActive="active">{{videolist.snippet.title}}</h5>
+                            <h5 (click)="addToFavourite(videolist)">AddToFavourite</h5>
+                        </div>
+                    </div>
+                        
+        </div>
 

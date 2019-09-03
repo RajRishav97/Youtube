@@ -51,22 +51,13 @@ export class PlaylistComponent implements OnInit {
   }
   addToFavourite(value){
     console.log(value,"from playlist");
+    value.snippet.Comment="";
     this._youtubeService.addToFavourites(value.snippet).subscribe();
   }
   doSearch(value){
     this._youtubeService.searchYoutube(value)
         .subscribe((data)=>{console.log(data.items);this.videolists=data.items;});
   }
-/*
-addHero (hero: Hero): Observable<Hero> {
-  return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
-    .pipe(
-      catchError(this.handleError('addHero', hero))
-    );
-}
-*/
-  // isSelected(videolist){
-  //   return videolist.snippet.resourceId.videoId === this.selectedID;
-  // }
+
   
 }
